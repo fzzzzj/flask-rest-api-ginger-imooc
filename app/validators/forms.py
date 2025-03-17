@@ -39,7 +39,8 @@ class UserEmailForm(ClientForm):
     nickname = StringField(validators=[DataRequired(),
                                        length(min=2, max=22)])
 
-    def validate_account(self, value):
+    @staticmethod
+    def validate_account(value):
         if User.query.filter_by(email=value.data).first():
             raise ValidationError()
 
