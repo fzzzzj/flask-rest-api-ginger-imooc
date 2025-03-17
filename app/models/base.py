@@ -90,6 +90,10 @@ class Base(db.Model):
 
 
 class MixinJSONSerializer:
+    def __init__(self):
+        self._exclude = None
+        self._fields = None
+
     @orm.reconstructor
     def init_on_load(self):
         self._fields = []
